@@ -132,12 +132,15 @@ class SiteController extends Controller
 
     public function actionUser()
     {    
-        $model=new two();
-       
-           if($model->load(Yii::$app->request->post() && $model->validate())){
+        $model=new two;
+        
+           if($model->load(Yii::$app->request->post()) && $model->validate()){
 
-           }
-           else{
+            Yii::$app->session->setFlash('success','lol');
+            return $this->render('userForm',['model'=>$model]);
+              }
+           
+          else{
             return $this->render('userForm',['model'=>$model]);
        
        }
